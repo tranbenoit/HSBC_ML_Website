@@ -8,6 +8,10 @@ router.get('/', function(request,response){
 	response.sendFile('public/index.html',{root : root_directory});
 });
 
+router.get('/statistics.html', function(request,response){
+	response.sendFile('public/statistics/statistics.html',{root : root_directory});
+})
+
 router
 .use(imported_scripts);
 

@@ -14,4 +14,12 @@ router.get('/index.js', function(request,response){
 router.get('/index.css', function(request,response){
 	response.sendFile('public/index.css',{root : root_directory});
 });
+
+router.get('/statistics.js', function(request,response){
+	response.sendFile('src/services/statistics.js',{root : root_directory});
+});
+
+router.get('/chart-service.js', function(request,response){
+	response.sendFile('src/services/chart-service.js',{root : root_directory});
+});
 module.exports = router;
