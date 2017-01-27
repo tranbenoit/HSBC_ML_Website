@@ -1,0 +1,5 @@
+{
+	"socketio" : {
+		"hostname" : "http://localhost:8080"
+	}
+}

@@ -78,6 +78,10 @@ var myChart3 = new Chart(ctx3, {
 	}
 });
 
+loadConfiguration();
+
+
+//------------------------------- Functions
 function getMonthDataStatistics()
 {
 	return [15,20];
@@ -97,3 +101,32 @@ function createCanvas(nameId)
 	document.getElementById("cd-main-content").appendChild(canvas);
 	return canvas;
 }
+
+function loadConfiguration(){
+	var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        {
+			responseT = xmlHttp.responseText;
+			response = JSON.parse(xmlHttp.responseText);
+			console.log(response);
+			connectToServerSocketIO(response.socketio.hostname);
+		}
+    }
+    xmlHttp.open("GET", '/getConfiguration', true);
+    xmlHttp.send();
+}
+
+function connectToServerSocketIO(hostname)
+{
+	var socket = io(hostname);
+	  $('form').submit(function(){
+		socket.emit('chat message', $('#m').val());
+		$('#m').val('');
+		return false;
+	  });
+	  socket.on('chat message', function(msg){
+		$('#messages').append($('<li>').text(msg));
+	  });
+}
+

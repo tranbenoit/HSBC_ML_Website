@@ -22,4 +22,6 @@ router.get('/statistics.js', function(request,response){
 router.get('/chart-service.js', function(request,response){
 	response.sendFile('src/services/chart-service.js',{root : root_directory});
 });
+
+
 module.exports = router;
